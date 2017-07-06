@@ -95,6 +95,18 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+/*maincontainer*/
+
+img {
+  height: 150px;
+  width: auto;
+  margin-left: 15px;
+}
+
+.maincontainer {
+  display: flex;
+  justify-content: space-around;
+}
 
 
 
