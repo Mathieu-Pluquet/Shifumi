@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="icone/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
@@ -21,20 +22,53 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <!-- maincontainer -->
         <div class="maincontainer">
-        <div class="joueur">
-          <img src="img/pierre.png" alt="">
-          <img src="img/feuille.png" alt="">
-          <img src="img/ciseaux.png" alt="">
-        </div>
+        <div class="container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Rock-paper-scissors_%28rock%29.png" width="100" alt="Pierre">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Rock-paper-scissors_%28paper%29.png" width="100" alt="Feuille">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Rock-paper-scissors_%28scissors%29.png" width="100" alt="Ciseaux">
+      <div class="resultat"></div>
+    </div>
 
-        <div class="ordi">
-          <img src="img/pierre.png" alt="">
-          <img src="img/feuille.png" alt="">
-          <img src="img/ciseaux.png" alt="">
-        </div>
-        </div>
+    <script type="text/javascript">
+      const buttons = document.querySelectorAll("img");
+      const username = prompt("Veuillez indiquer votre nom d'utilisateur...");
+
+      var compteur = 0
+      var compteura =0
+      for (let i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener("click", function() {
+          var joueur = buttons[i].alt;
+          var random =Math.random()*3;
+          if(random>=0 && random<=1){
+           random = "Pierre";
+          }
+          else if (random>1 && random<=2){
+           random = "Feuille";
+          }
+          else{
+           random = "Ciseaux";
+          }
+          var resultat;
+          // Logique entiere du jeu
+          if (joueur === random)
+            resultat = "Vous avez fait une egalité !";
+          else if ((joueur === "Pierre" && random === "Ciseaux") || (joueur === "Feuille" && random === "Pierre") || (joueur === "Ciseaux" && random === "Feuille"))
+            resultat = "Vous avez gagné !";
+          else
+            resultat = "Vous avez perdu !";
+
+          document.querySelector(".resultat").innerHTML = `
+            ${username} : ${joueur}</br>
+            Machine : ${random}</br>
+            ${resultat}
+          `;
+        })
+      }
+
+    </script>
+    </div>
+
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
