@@ -100,12 +100,18 @@ textarea {
 img {
   height: 150px;
   width: auto;
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
 .maincontainer {
   display: flex;
   justify-content: space-around;
+}
+
+.imagesdebut {
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 

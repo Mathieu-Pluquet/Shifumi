@@ -24,46 +24,64 @@
         <!-- Add your site or application content here -->
         <div class="maincontainer">
         <div class="container">
+          <div class="imagesdebut">
       <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Rock-paper-scissors_%28rock%29.png" width="100" alt="Pierre">
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Rock-paper-scissors_%28paper%29.png" width="100" alt="Feuille">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Rock-paper-scissors_%28scissors%29.png" width="100" alt="Ciseaux">
-      <div class="resultat"></div>
+          </div>
+      <div class="res"></div>
+
     </div>
 
     <script type="text/javascript">
-      const buttons = document.querySelectorAll("img");
-      const username = prompt("Veuillez indiquer votre nom d'utilisateur...");
+      var buttons = document.querySelectorAll("img");
+      var username = prompt("Veuillez indiquer votre nom d'utilisateur...");
+      var x = document.createElement("img");
+      var y = document.createElement("img");
+      var joueur;
+      var choixOrdi;
 
-      var compteur = 0
-      var compteura =0
       for (let i = 0; i < buttons.length; i++){
         buttons[i].addEventListener("click", function() {
-          var joueur = buttons[i].alt;
+          joueur = buttons[i].alt;
+          y.setAttribute("src", "img/"+joueur+".gif");
+          console.log(joueur);
           var random =Math.random()*3;
           if(random>=0 && random<=1){
-           random = "Pierre";
+            choixOrdi = "Pierre";
+           x.setAttribute("src", "img/Pierre.gif");
           }
           else if (random>1 && random<=2){
-           random = "Feuille";
+            choixOrdi= "Feuille";
+            x.setAttribute("src", "img/Feuille.gif");
           }
           else{
-           random = "Ciseaux";
+           choixOrdi = "Ciseaux";
+           x.setAttribute("src", "img/Ciseaux.gif");
           }
-          var resultat;
-          // Logique entiere du jeu
-          if (joueur === random)
-            resultat = "Vous avez fait une egalité !";
-          else if ((joueur === "Pierre" && random === "Ciseaux") || (joueur === "Feuille" && random === "Pierre") || (joueur === "Ciseaux" && random === "Feuille"))
-            resultat = "Vous avez gagné !";
-          else
-            resultat = "Vous avez perdu !";
+          console.log(choixOrdi);
+          document.body.appendChild(y);
+          document.body.appendChild(x);
 
-          document.querySelector(".resultat").innerHTML = `
+          var resultat;
+
+              if ( joueur== "Pierre" && choixOrdi == "Ciseaux" || joueur == "Feuille" && choixOrdi == "Pierre" || joueur == "Ciseaux" && choixOrdi == "Feuille") {
+                  resultat = "Vous avez gagné !";
+            } else if (joueur == "Ciseaux" && choixOrdi == "Pierre" || joueur== "Pierre" && choixOrdi == "Feuille" || joueur == "Feuille" && choixOrdi == "Ciseaux") {
+                resultat = "Vous avez perdu !";
+            } else if (joueur == choixOrdi) {
+            resultat = "Vous avez fait une egalité !";
+            }
+
+          document.querySelector(".res").innerHTML = `
             ${username} : ${joueur}</br>
-            Machine : ${random}</br>
+            Ordi : ${choixOrdi}</br>
             ${resultat}
           `;
+
         })
+
+
       }
 
     </script>
@@ -71,7 +89,6 @@
 
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 
