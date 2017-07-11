@@ -1,49 +1,54 @@
-// var compteur = 0;
-// var compteura =0;
-//
-// while(compteur <3 && compteura <3 && a!="stop"){
-// var random =Math.random()*3;
-// a = a.toLowerCase()
-// if(random>=0 && random<=1){
-//  random = var pierre = document.getElementById("pierre1");
-// }
-// else if (random>1 && random<=2){
-//  random = var feuille = document.getElementById("feuille1");
-// }
-// else{
-//  random = var ciseaux = document.getElementById("ciseaux1");
-// }
-// if(a== "pierre" && random == "ciseaux" || a=="feuille" && random == "pierre" || a=="ciseaux" && random=="feuille"){
-//   compteura++
-//     alert("Tu gagnes le point")
-//     alert("humain" + " " + compteura + " ordi " + compteur)
-// }
-// else if(a== "ciseaux" && random == "pierre" || a=="pierre" && random =="feuille" || a=="feuille" && random =="ciseaux"){
-//   compteur++
-//     alert("Tu perds le point")
-//     alert("humain" + " " + compteura + " ordi " + compteur)
-// }
-// else if ( a== random){
-// alert("égalité")
-// }
-// else if (a=="stop"){
-//  alert("Noob")
-// }
-// else if (a==""){
-//   alert("Tape ton choix ou tape 'stop' si tu souhaites arreter")
-// }
-// else {
-//   alert("Apprends à écrire")
-// }
-// }
-//
-//
-// if (compteura ==3 && compteur==0){
-// 	alert("Perfect game ;)")
-// }
-// else if (compteura ==3){
-// 	alert("Bravo, tu as gagné " + compteura + " à "+ compteur)
-// }
-// else if (compteur == 3){
-// alert("Dommage, tu as perdu " + compteur + " à " + compteura)
-// }
+var compteurplayer=0;
+var compteurbot=0;
+var imgAll = document.querySelectorAll("img");
+var username = prompt("Veuillez indiquer votre nom d'utilisateur...");
+var x = document.createElement("img");
+var y = document.createElement("img");
+var joueur;
+var choixOrdi;
+
+for (let i = 0; i < imgAll.length; i++){
+  imgAll[i].addEventListener("click", function() {
+    joueur = imgAll[i].alt;
+    y.setAttribute("src", "img/"+joueur+".gif");
+    console.log(joueur);
+    var random =Math.random()*3;
+    if(random>=0 && random<=1){
+      choixOrdi = "Pierre";
+     x.setAttribute("src", "img/Pierre.gif");
+    }
+    else if (random>1 && random<=2){
+      choixOrdi= "Feuille";
+      x.setAttribute("src", "img/Feuille.gif");
+    }
+    else{
+     choixOrdi = "Ciseaux";
+     x.setAttribute("src", "img/Ciseaux.gif");
+    }
+    console.log(choixOrdi);
+    document.body.appendChild(y);
+    document.body.appendChild(x);
+
+    var resultat;
+
+        if ( joueur== "Pierre" && choixOrdi == "Ciseaux" || joueur == "Feuille" && choixOrdi == "Pierre" || joueur == "Ciseaux" && choixOrdi == "Feuille") {
+            resultat = "Vous avez gagné !";
+            compteurplayer++
+      } else if (joueur == "Ciseaux" && choixOrdi == "Pierre" || joueur== "Pierre" && choixOrdi == "Feuille" || joueur == "Feuille" && choixOrdi == "Ciseaux") {
+          resultat = "Vous avez perdu !";
+          compteurbot++
+      } else if (joueur == choixOrdi) {
+      resultat = "Il y'a une egalité !";
+      }
+
+    document.querySelector(".res").innerHTML = `
+      ${username} : ${joueur}</br>
+      Ordi : ${choixOrdi}</br>
+      ${resultat}
+    `;
+    document.querySelector(".compteurplayer").innerHTML = compteurplayer
+    document.querySelector(".compteurbot").innerHTML = compteurbot
+  })
+
+
+}
