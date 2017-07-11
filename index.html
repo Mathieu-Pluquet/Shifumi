@@ -28,12 +28,17 @@
       <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Rock-paper-scissors_%28rock%29.png" width="100" alt="Pierre">
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Rock-paper-scissors_%28paper%29.png" width="100" alt="Feuille">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Rock-paper-scissors_%28scissors%29.png" width="100" alt="Ciseaux">
-          </div>
       <div class="res"></div>
+      </div>
+      <span class="compteurplayer"></span>
+      <span class="compteurbot"></span>
+
 
     </div>
 
     <script type="text/javascript">
+      var compteurplayer=0;
+      var compteurbot=0;
       var buttons = document.querySelectorAll("img");
       var username = prompt("Veuillez indiquer votre nom d'utilisateur...");
       var x = document.createElement("img");
@@ -67,10 +72,12 @@
 
               if ( joueur== "Pierre" && choixOrdi == "Ciseaux" || joueur == "Feuille" && choixOrdi == "Pierre" || joueur == "Ciseaux" && choixOrdi == "Feuille") {
                   resultat = "Vous avez gagné !";
+                  compteurplayer++
             } else if (joueur == "Ciseaux" && choixOrdi == "Pierre" || joueur== "Pierre" && choixOrdi == "Feuille" || joueur == "Feuille" && choixOrdi == "Ciseaux") {
                 resultat = "Vous avez perdu !";
+                compteurbot++
             } else if (joueur == choixOrdi) {
-            resultat = "Vous avez fait une egalité !";
+            resultat = "Il y'a une egalité !";
             }
 
           document.querySelector(".res").innerHTML = `
@@ -78,7 +85,8 @@
             Ordi : ${choixOrdi}</br>
             ${resultat}
           `;
-
+          document.querySelector(".compteurplayer").innerHTML = compteurplayer
+          document.querySelector(".compteurbot").innerHTML = compteurbot
         })
 
 
